@@ -182,7 +182,6 @@ public class Mortality {
 
     public static void main(String[] args) {
         String fullName = "Mia Collins";
-        testWithGet(fullName);
         /**  uncomment to experiment with "join" and "get" methods
          testWithJoin(fullName);
          testWithGet(fullName);
