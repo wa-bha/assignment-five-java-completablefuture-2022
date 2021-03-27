@@ -28,8 +28,7 @@
     <target name="jar" depends="compile">
         <mkdir dir="${jar}"/>
         <jar destfile="${jar}/${ant.project.name}.jar" basedir="${classes}">
-            <!-- Copy the kernel file to jar file -->
-            <fileset dir="src" includes="${kernel}" />
+            <!-- Main class in jar file -->
             <manifest>
                 <attribute name="Main-Class" value="${main-class}"/>
             </manifest>
