@@ -11,7 +11,7 @@
     <property name="classes" value="${build}/classes"/>
     <property name="jar"     value="${build}/jar"/>
     <property name="main-class"  value="completablefuture_assignment.Mortality"/>
-    <property name="argument" value="-g -e 256 -c 3 img_examples/img_bucket.jpg"/>
+    <property name="argument" value=""/>
 
     <target name="init">
         <!-- Create the time stamp -->
@@ -25,11 +25,11 @@
         <mkdir dir="${classes}"/>
         <!-- Compile the Java code from ${src} into ${build} -->
         <javac srcdir="${src}" destdir="${classes}">
-            <classpath>
-                <fileset dir="${lib}">
-                    <include name="**/*.jar" />
-                </fileset>
-            </classpath>
+<!--            <classpath>-->
+<!--                <fileset dir="${lib}">-->
+<!--                    <include name="**/*.jar" />-->
+<!--                </fileset>-->
+<!--            </classpath>-->
         </javac>
     </target>
     <!-- Create the jar file -->
@@ -41,7 +41,7 @@
             <manifest>
                 <attribute name="Main-Class" value="${main-class}"/>
             </manifest>
-            <zipgroupfileset dir="${lib}" includes="**/*.jar"/>
+<!--            <zipgroupfileset dir="${lib}" includes="**/*.jar"/>-->
         </jar>
     </target>
 
@@ -57,12 +57,6 @@
             description="clean up" >
         <!-- Delete the ${build} directory trees -->
         <delete dir="${build}" failonerror="true"/>
-        <delete failonerror="true">
-            <fileset dir="${img_examples}" includes="*_cartoon.jpg"/>
-            <fileset dir="${img_examples}" includes="*_blurred.jpg"/>
-            <fileset dir="${img_examples}" includes="*_colours.jpg"/>
-            <fileset dir="${img_examples}" includes="*_edges.jpg"/>
-        </delete>
     </target>
     <target name="main" depends="clean,run"/>
 </project>

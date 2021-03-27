@@ -177,11 +177,13 @@ public class Mortality {
         System.out.println(fullName);
         //write your implementation here
 
+
     }
 
     public static void main(String[] args) {
         String fullName = "Mia Collins";
-        /**     uncomment to experiment with "join" and "get" methods
+        testWithGet(fullName);
+        /**  uncomment to experiment with "join" and "get" methods
          testWithJoin(fullName);
          testWithGet(fullName);
          testWithoutJoinAndGet(fullName);

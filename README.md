@@ -54,7 +54,7 @@ The performance of the super fund depends on the global economy, the local stock
 |conservative|2.5%|
 |cash|1.0%|
 
-Test your program to make sure it works correctly. Each dataflow node should start executing and output its result when it sees its inputs arrive. That is, for example, DeathAge and WorkingYears are calculated asynchronously and their outputs could be in a different order each time your program runs. The same happens for the calculation of RetirementYears and Superbalance, and so on. Here is one sample output of the name "Mia Collins", with input data indented.
+Test your program to make sure it works correctly. Each dataflow node should start executing and output its result when it sees its inputs arrive. That is, for example, DeathAge and WorkingYears are calculated asynchronously, and their outputs could be in a different order each time your program runs. The same happens for the calculation of RetirementYears and Superbalance, and so on. Here is one sample output of the name "Mia Collins", with input data indented.
 
 ```
 Mia Collins
