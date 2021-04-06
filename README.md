@@ -1,6 +1,6 @@
 # Assignment five Java CompletableFuture (7%)
 
-**Due date Friday 8 May at 11:30 pm**
+**Due date Friday 16 April at 11:30 pm**
 
 ## Instructions
 
@@ -12,7 +12,7 @@
   * IntelliJ: Alternatively, you could get the project from GitLab repository via IntelliJ interface. From the menu bar, *Git* > *Clone* > *Copy* the url to Repository URL > *Clone* (Reference: Get a project from version control: https://www.jetbrains.com/help/idea/import-project-or-module-wizard.html)
 * Commit your changes regularly, providing an informative commit message and using Git inside IntelliJ (Commit and Changes Tutorial: https://www.jetbrains.com/help/idea/commit-and-push-changes.html)
 
-You are expected to make at least 20 commits with messages to explain what have changed. 10 out of 50 marks are allocated for this.
+You are expected to make at least 10 commits with messages to explain what have changed. 10 out of 50 marks are allocated for this.
 
 ## Your tasks
 
@@ -81,7 +81,7 @@ Note: The output may vary for each run.
 
 |Marks|Allocated to|
 |-----|-------|
-|9|At least twenty informative Commit comments |
+|9|At least ten informative Commit comments |
 |40 |CompletableFuture implementation of the five dataflow objects (8 marks each) |
 
 
