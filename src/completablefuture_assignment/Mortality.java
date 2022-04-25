@@ -199,15 +199,24 @@ public class Mortality {
                     String gender = person.getGender();
                     int birthYear = person.getBirthYear();
                     int deathAgeOutput = calculateDeathAge(gender, birthYear);
+
                     System.out.println("\tbirth year=" + birthYear);
                     System.out.println("\tsex=" + gender);
-                    System.out.println(String.format(DIE_MSG, deathAgeOutput));
+                    System.out.print(String.format(DIE_MSG, deathAgeOutput));
 
                     return deathAgeOutput;
                 });
 
             // WorkingYears: outputs the 'retirement age' minus the 'start work age'.
-            CompletableFuture<Integer> WorkingYears;
+            CompletableFuture<Integer> WorkingYears = RetirementAge
+                    .thenCombineAsync(SuperStartAge, (retireAge, startAge) -> {
+                        int workingYearsOutput = retireAge - startAge;
+
+                        System.out.println("\tstart super age=" + startAge);
+                        System.out.println("\tretirement age=" + retireAge);
+                        System.out.print(String.format(WORKING_YEARS_MSG, workingYearsOutput));
+                        return workingYearsOutput;
+                    });
 
             // RetirementYears: outputs the DeathAge result minus 'retirement age'.
             CompletableFuture<Integer> RetirementYears;
@@ -221,6 +230,7 @@ public class Mortality {
 
             // Test completable future tasks!
             DeathAge.get();
+            WorkingYears.get();
         }
 
         catch (Exception ex){
