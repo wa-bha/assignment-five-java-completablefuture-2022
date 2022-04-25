@@ -186,6 +186,13 @@ public class Mortality {
         */
 
         try {
+
+            // User input
+            CompletableFuture<Integer> RetirementAge = CompletableFuture.supplyAsync(RetirementAgeSupplier);
+            CompletableFuture<Integer> SuperStartAge = CompletableFuture.supplyAsync(SuperannuatationStrategySupplier::getStartSuperAge);
+            CompletableFuture<String> SuperStrategy = CompletableFuture.supplyAsync(SuperannuatationStrategySupplier::getSuperStrategy);
+            CompletableFuture<Integer> SuperContribution = CompletableFuture.supplyAsync(SuperannuatationStrategySupplier::getContribution);
+
             // DeathAge: outputs the expected age that you will die, based on average lifespans.
             CompletableFuture<Integer> DeathAge = CompletableFuture.supplyAsync(() -> PersonInfoSupplier.getPersonInfo(fullName).get())
                 .thenApplyAsync((person) -> {
@@ -198,6 +205,19 @@ public class Mortality {
 
                     return deathAgeOutput;
                 });
+
+            // WorkingYears: outputs the 'retirement age' minus the 'start work age'.
+            CompletableFuture<Integer> WorkingYears;
+
+            // RetirementYears: outputs the DeathAge result minus 'retirement age'.
+            CompletableFuture<Integer> RetirementYears;
+
+            // Super balance: calculates your total Super balance
+            CompletableFuture<Double> SuperBalance;
+
+            // LifeStyle: outputs your SuperBalance result divided by the number of years of retirement.
+            CompletableFuture<Integer> Lifestyle;
+
 
             // Test completable future tasks!
             DeathAge.get();
