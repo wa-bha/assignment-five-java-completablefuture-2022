@@ -235,6 +235,11 @@ public class Mortality {
                         try {
                             int workingYears = WorkingYears.get();
 
+                            for (int i = 0; i < workingYears; i++) {
+                                // Test output
+                                //System.out.println((i + 1) + "(year): " + balance);
+                                balance = balance * performance(strategy) + (double)contribution / 100;
+                            }
                             System.out.println("\tsuper strategy=" + strategy);
                             System.out.println("\tcontribution%=" + contribution);
                             System.out.print(String.format(SUPER_PAYOUT_MSG, balance));
