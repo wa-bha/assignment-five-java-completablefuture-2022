@@ -56,13 +56,13 @@ public class Mortality {
         return retirementAge;
     };
 
-    /*
+    /**
      *  Calculates the death age given a gender and birth year.
      *  @param gender ("male" or female)
      *  @param birthYear (between 1928 and 2018)
      *  @return a death age
      */
-    protected static int caculateDeathAge(String gender, int birthYear) {
+    protected static int calculateDeathAge(String gender, int birthYear) {
         final int deathAge;
         if ("male".equals(gender)) {
             deathAge = 79 + (2018 - birthYear) / 20;
@@ -186,8 +186,16 @@ public class Mortality {
         */
 
         try {
-            // Completable future tasks!
+            // DeathAge: outputs the expected age that you will die, based on average lifespans.
+            CompletableFuture<Integer> DeathAge = CompletableFuture.supplyAsync(() -> PersonInfoSupplier.getPersonInfo(fullName).get())
+                .thenApplyAsync((person) -> {
+                    int output = calculateDeathAge(person.getGender(), person.getBirthYear());
+                    System.out.println(output);
+                    return output;
+                });
 
+            // Test completable future tasks!
+            //System.out.println(DeathAge.get());
         }
 
         catch (Exception ex){
