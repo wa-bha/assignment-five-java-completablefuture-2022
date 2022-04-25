@@ -92,10 +92,10 @@ public class Mortality {
         }
     }
 
-    /**
+    /*
      * Displays the final output messages, given the final node of the dataflow graph.
      *
-     * @param sependlevel calculated based on the performance, contribution and working years.
+     * @param spendLevel calculated based on the performance, contribution and working years.
      * @throws InterruptedException
      * @throws ExecutionException
      */
@@ -175,18 +175,32 @@ public class Mortality {
      */
     public static void query(String fullName) {
         System.out.println(fullName);
-        //write your implementation here
 
+        /*
+        Your task is to implement the "query" method to set up the dataflow graph
+        Ensure each dataflow node running as a CompletableFuture async task in a thread pool.
+        Upon receiving its input(s):
+         -> each dataflow node starts executing
+             -> then outputs its result
+             -> which may trigger the following dataflow nodes to start executing.
+        */
 
+        try {
+            // Completable future tasks!
+
+        }
+
+        catch (Exception ex){
+            System.out.println(ex);
+        }
     }
 
     public static void main(String[] args) {
         String fullName = "Mia Collins";
-        /**  uncomment to experiment with "join" and "get" methods
-         testWithJoin(fullName);
-         testWithGet(fullName);
-         testWithoutJoinAndGet(fullName);
-         **/
+        //uncomment to experiment with "join" and "get" methods
+        //testWithJoin(fullName);
+        //testWithGet(fullName);
+        //testWithoutJoinAndGet(fullName);
         query(fullName);
     }
 }
