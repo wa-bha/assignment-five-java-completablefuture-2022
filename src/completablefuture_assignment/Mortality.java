@@ -26,7 +26,7 @@ public class Mortality {
     protected static final String LIFESTYLE_MSG = "You live on %.1f%% of median salary\n";
     protected static Random random = new Random();
     //use debug flag to see the threads in action
-    public static boolean debug = true;
+    public static boolean debug = false;
 
     /*
      *  a helper method that delays the execution of the current thread
@@ -219,7 +219,13 @@ public class Mortality {
                     });
 
             // RetirementYears: outputs the DeathAge result minus 'retirement age'.
-            CompletableFuture<Integer> RetirementYears;
+            CompletableFuture<Integer> RetirementYears = DeathAge
+                    .thenCombineAsync(RetirementAge, (deathAge, retireAge) -> {
+                        int retirementYearsOutput = deathAge - retireAge;
+
+                        System.out.print(String.format(RETIREMENT_YEARS_MSG, retirementYearsOutput));
+                        return retirementYearsOutput;
+                    });
 
             // Super balance: calculates your total Super balance
             CompletableFuture<Double> SuperBalance;
@@ -230,6 +236,7 @@ public class Mortality {
 
             // Test completable future tasks!
             DeathAge.get();
+            RetirementYears.get();
             WorkingYears.get();
         }
 
