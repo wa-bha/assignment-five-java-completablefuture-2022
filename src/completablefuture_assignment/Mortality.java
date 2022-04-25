@@ -253,15 +253,17 @@ public class Mortality {
                     });
 
             // LifeStyle: outputs your SuperBalance result divided by the number of years of retirement.
-            CompletableFuture<Integer> Lifestyle;
+            CompletableFuture<Double> Lifestyle = RetirementYears
+                    .thenCombineAsync(SuperBalance, (years, balance) -> {
+                        double lifestyleOutput = balance / years;
+
+                        System.out.print(String.format(LIFESTYLE_MSG, lifestyleOutput * 100));
+                        return lifestyleOutput;
+                    });
 
 
             // Test completable future tasks!
-            // DeathAge.get();
-            RetirementYears.get();
-            // WorkingYears.get();
-            SuperBalance.get();
-            // Lifestyle.get();
+            Lifestyle.get();
         }
 
         catch (Exception ex){
