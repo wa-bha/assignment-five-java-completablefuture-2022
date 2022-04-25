@@ -204,7 +204,6 @@ public class Mortality {
                     System.out.println("\tbirth year=" + birthYear);
                     System.out.println("\tsex=" + gender);
                     System.out.print(String.format(DIE_MSG, deathAgeOutput));
-
                     return deathAgeOutput;
                 });
 
@@ -263,7 +262,7 @@ public class Mortality {
 
 
             // Test completable future tasks!
-            Lifestyle.get();
+            displayResult(Lifestyle.get());
         }
 
         catch (Exception ex){
@@ -273,10 +272,8 @@ public class Mortality {
 
     public static void main(String[] args) {
         String fullName = "Mia Collins";
-        //uncomment to experiment with "join" and "get" methods
-        //testWithJoin(fullName);
-        //testWithGet(fullName);
-        //testWithoutJoinAndGet(fullName);
+        // String fullName = "Olivia Lewis";
+        // String fullName = "Liam Pearce";
         query(fullName);
     }
 }
