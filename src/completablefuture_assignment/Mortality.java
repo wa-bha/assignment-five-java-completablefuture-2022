@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
@@ -228,16 +229,34 @@ public class Mortality {
                     });
 
             // Super balance: calculates your total Super balance
-            CompletableFuture<Double> SuperBalance;
+            CompletableFuture<Double> SuperBalance = SuperStrategy
+                    .thenCombineAsync(SuperContribution, (strategy, contribution) -> {
+                        double balance = 0;
+                        try {
+                            int workingYears = WorkingYears.get();
+
+                            System.out.println("\tsuper strategy=" + strategy);
+                            System.out.println("\tcontribution%=" + contribution);
+                            System.out.print(String.format(SUPER_PAYOUT_MSG, balance));
+                            return balance;
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    });
 
             // LifeStyle: outputs your SuperBalance result divided by the number of years of retirement.
             CompletableFuture<Integer> Lifestyle;
 
 
             // Test completable future tasks!
-            DeathAge.get();
+            // DeathAge.get();
             RetirementYears.get();
-            WorkingYears.get();
+            // WorkingYears.get();
+            SuperBalance.get();
+            // Lifestyle.get();
         }
 
         catch (Exception ex){
