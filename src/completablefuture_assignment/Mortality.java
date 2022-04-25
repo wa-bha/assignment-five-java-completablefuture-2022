@@ -189,13 +189,18 @@ public class Mortality {
             // DeathAge: outputs the expected age that you will die, based on average lifespans.
             CompletableFuture<Integer> DeathAge = CompletableFuture.supplyAsync(() -> PersonInfoSupplier.getPersonInfo(fullName).get())
                 .thenApplyAsync((person) -> {
-                    int output = calculateDeathAge(person.getGender(), person.getBirthYear());
-                    System.out.println(output);
-                    return output;
+                    String gender = person.getGender();
+                    int birthYear = person.getBirthYear();
+                    int deathAgeOutput = calculateDeathAge(gender, birthYear);
+                    System.out.println("\tbirth year=" + birthYear);
+                    System.out.println("\tsex=" + gender);
+                    System.out.println(String.format(DIE_MSG, deathAgeOutput));
+
+                    return deathAgeOutput;
                 });
 
             // Test completable future tasks!
-            //System.out.println(DeathAge.get());
+            DeathAge.get();
         }
 
         catch (Exception ex){
